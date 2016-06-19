@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="100dp"
+        android:id="@+id/businessImageView"
+        android:src="@drawable/saul_goodman"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/businessNameTextView"
+            android:text="Business Name"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/businessCategoryTextView"
+            android:text="Business Categories"
+            android:textStyle="italic" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/businessRatingTextView"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:text="Rating"
+                android:textColor="@color/colorAccent"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
