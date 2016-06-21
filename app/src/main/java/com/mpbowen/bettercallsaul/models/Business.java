@@ -2,6 +2,7 @@
 package com.mpbowen.bettercallsaul.models;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -243,8 +244,8 @@ public class Business {
     }
 
     public String getLargeImageUrl() {
-        String imageUrl = this.getImageUrl();
-        String largeImageUrl = imageUrl.substring(0, imageUrl.length() - 6).concat("o.jpg");
+        imageUrl = this.getImageUrl();
+        String largeImageUrl = imageUrl.substring(0, (imageUrl.length() - 6)).concat("o.jpg");
         return largeImageUrl;
     }
 
