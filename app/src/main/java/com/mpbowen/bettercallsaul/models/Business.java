@@ -244,7 +244,7 @@ public class Business {
     }
 
     public String getLargeImageUrl() {
-        imageUrl = this.getImageUrl();
+        String imageUrl = this.getImageUrl();
         String largeImageUrl = imageUrl.substring(0, (imageUrl.length() - 6)).concat("o.jpg");
         return largeImageUrl;
     }

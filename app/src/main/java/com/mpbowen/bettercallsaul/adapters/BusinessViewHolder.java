@@ -56,11 +56,10 @@ public class BusinessViewHolder extends RecyclerView.ViewHolder {
 
     public void bindBusiness(Business business) {
         // Bind with Glide
-        // TODO: Use Constants.MAX_WIDTH, Constants.MAX_HEIGHT) for detail view?
-        // TODO: Use getLargeImageUrl() - fix bug ?
         if (business.getImageUrl() != null) {
             Glide.with(mContext)
-                    .load(business.getImageUrl())
+                    .load(business.getLargeImageUrl())
+                    .override(Constants.MAX_WIDTH, Constants.MAX_HEIGHT)
                     .centerCrop()
                     .into(mBusinessImageView);
         } else {
