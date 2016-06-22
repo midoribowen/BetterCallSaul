@@ -5,9 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".businessList.BusinessListActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recyclerView"/>
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragmentBusinessList"
+        android:name="com.mpbowen.bettercallsaul.businessList.BusinessListFragment"
+        tools:layout="@layout/fragment_business_list"/>
 
 </RelativeLayout>
