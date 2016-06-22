@@ -1,8 +1,8 @@
-package com.mpbowen.bettercallsaul;
+package com.mpbowen.bettercallsaul.businessList;
 
+import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.mpbowen.bettercallsaul.Constants;
+import com.mpbowen.bettercallsaul.R;
 import com.mpbowen.bettercallsaul.adapters.BusinessListAdapter;
 import com.mpbowen.bettercallsaul.models.Business;
 import com.mpbowen.bettercallsaul.models.SearchResponse;
