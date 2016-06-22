@@ -4,6 +4,7 @@ package com.mpbowen.bettercallsaul.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -72,6 +73,7 @@ public class BusinessViewHolder extends RecyclerView.ViewHolder {
         // Bind views for legal_list_item
         mBusinessNameTextView.setText(business.getName());
         mBusinessCategoryTextView.setText(business.getCategoriesAsString());
+        mBusinessAddressTextView.setText(TextUtils.join(", ", business.getLocation().getAddress()));
         mBusinessRatingTextView.setText("Rating: " + business.getRating() + "/5");
     }
 
