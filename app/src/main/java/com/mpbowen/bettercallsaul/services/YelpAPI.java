@@ -11,6 +11,7 @@ public interface YelpAPI {
     @GET("/v2/search")
     Call<SearchResponse> search(
             @Query("term") String term,
-            @Query("location") String location
+            @Query("location") String location,
+            @Query("limit") String limit
     );
 }

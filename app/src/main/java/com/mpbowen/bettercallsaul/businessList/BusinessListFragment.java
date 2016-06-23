@@ -110,9 +110,10 @@ public class BusinessListFragment extends Fragment {
 
     private void getBusinesses(String location) {
         String term = "legal services";
+        String limit = "15";
         YelpAPIFactory apiFactory = new YelpAPIFactory(Constants.YELP_CONSUMER_KEY, Constants.YELP_CONSUMER_SECRET, Constants.YELP_TOKEN, Constants.YELP_TOKEN_SECRET);
         YelpAPI yelpAPI = apiFactory.createAPI();
-        Call<SearchResponse> call = yelpAPI.search(term, location);
+        Call<SearchResponse> call = yelpAPI.search(term, location, limit);
         Callback<SearchResponse> callback = new Callback<SearchResponse>() {
             @Override
             public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
