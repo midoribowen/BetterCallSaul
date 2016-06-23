@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,8 +12,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.mpbowen.bettercallsaul.Constants;
 import com.mpbowen.bettercallsaul.R;
+import com.mpbowen.bettercallsaul.businessDetail.BusinessDetailActivity;
 import com.mpbowen.bettercallsaul.models.Business;
-import com.mpbowen.bettercallsaul.models.Location;
 
 import org.parceler.Parcels;
 
@@ -42,16 +41,16 @@ public class BusinessViewHolder extends RecyclerView.ViewHolder {
         mContext = itemView.getContext();
         mBusinesses = businesses;
 
-//        itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                int itemPosition = getLayoutPosition();
-//                Intent intent = new Intent(mContext, LegalDetailActivity.class);
-//                intent.putExtra("position", itemPosition + "");
-//                intent.putExtra("businesses", Parcels.wrap(mBusinesses));
-//                mContext.startActivity(intent);
-//            }
-//        });
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int itemPosition = getLayoutPosition();
+                Intent intent = new Intent(mContext, BusinessDetailActivity.class);
+                intent.putExtra("position", itemPosition + "");
+                intent.putExtra("businesses", Parcels.wrap(mBusinesses));
+                mContext.startActivity(intent);
+            }
+        });
     }
 
 

@@ -1,27 +1,29 @@
-package com.mpbowen.bettercallsaul.businessList;
+package com.mpbowen.bettercallsaul.businessDetail;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
 import com.mpbowen.bettercallsaul.R;
 
-public class BusinessListActivity extends AppCompatActivity {
+import butterknife.Bind;
+
+public class BusinessDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_business_list);
+        setContentView(R.layout.activity_business_detail);
 
-        initFragment(BusinessListFragment.newInstance());
+        initFragment(BusinessDetailFragment.newInstance());
     }
 
-    private void initFragment(Fragment businessListFragment) {
+    private void initFragment(Fragment businessDetailFragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.contentFrame, businessListFragment);
+        fragmentTransaction.add(R.id.detailContentFrame, businessDetailFragment);
         fragmentTransaction.commit();
     }
 
