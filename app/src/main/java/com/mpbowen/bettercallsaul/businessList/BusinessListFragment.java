@@ -1,7 +1,6 @@
 package com.mpbowen.bettercallsaul.businessList;
 
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -49,6 +48,10 @@ public class BusinessListFragment extends Fragment {
 
     public BusinessListFragment() {
         // Required empty public constructor
+    }
+
+    public static BusinessListFragment newInstance() {
+        return new BusinessListFragment();
     }
 
     @Override
@@ -105,7 +108,7 @@ public class BusinessListFragment extends Fragment {
         mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, location).apply();
     }
 
-        private void getBusinesses(String location) {
+    private void getBusinesses(String location) {
         String term = "legal services";
         YelpAPIFactory apiFactory = new YelpAPIFactory(Constants.YELP_CONSUMER_KEY, Constants.YELP_CONSUMER_SECRET, Constants.YELP_TOKEN, Constants.YELP_TOKEN_SECRET);
         YelpAPI yelpAPI = apiFactory.createAPI();
