@@ -9,4 +9,12 @@
     <color name="colorIcons">#212121</color>
     <color name="colorDivider">#B6B6B6</color>
     <color name="colorCard">#FFFFFF</color>
+    <color name="window_background">#FFF5F5F5</color>
+
+    <color name="translucent_scrim_top">#33000000</color>
+    <color name="translucent_scrim_top_center">#1A000000</color>
+
+    <color name="translucent_scrim_bottom_center">#1A000000</color>
+    <color name="translucent_scrim_bottom">#33000000</color>
+
 </resources>
