@@ -31,6 +31,9 @@ public class BusinessViewHolder extends RecyclerView.ViewHolder {
     @Bind(R.id.businessAddressTextView) TextView mBusinessAddressTextView;
     @Bind(R.id.businessRatingTextView) TextView mBusinessRatingTextView;
 
+    public final View mView;
+    public String mBusinessNameString;
+    public String mBusinessImageUrlString;
     private Context mContext;
     private List<Business> mBusinesses = new ArrayList<>();
 
@@ -38,19 +41,20 @@ public class BusinessViewHolder extends RecyclerView.ViewHolder {
     public BusinessViewHolder(View itemView, List<Business> businesses) {
         super(itemView);
         ButterKnife.bind(this, itemView);
+        mView = itemView;
         mContext = itemView.getContext();
         mBusinesses = businesses;
 
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int itemPosition = getLayoutPosition();
-                Intent intent = new Intent(mContext, BusinessDetailActivity.class);
-                intent.putExtra("position", itemPosition + "");
-                intent.putExtra("businesses", Parcels.wrap(mBusinesses));
-                mContext.startActivity(intent);
-            }
-        });
+//        itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                int itemPosition = getLayoutPosition();
+//                Intent intent = new Intent(mContext, BusinessDetailActivity.class);
+//                intent.putExtra("position", itemPosition + "");
+//                intent.putExtra("businesses", Parcels.wrap(mBusinesses));
+//                mContext.startActivity(intent);
+//            }
+//        });
     }
 
 
