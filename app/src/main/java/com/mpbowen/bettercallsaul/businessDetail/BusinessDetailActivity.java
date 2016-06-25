@@ -57,7 +57,7 @@ public class BusinessDetailActivity extends AppCompatActivity {
     private void initFragment(Fragment businessDetailFragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.detailContentFrame, businessDetailFragment);
+        fragmentTransaction.add(R.id.detailContentFragment, businessDetailFragment);
         fragmentTransaction.commit();
     }
 

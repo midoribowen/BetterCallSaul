@@ -45,16 +45,6 @@ public class BusinessViewHolder extends RecyclerView.ViewHolder {
         mContext = itemView.getContext();
         mBusinesses = businesses;
 
-//        itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                int itemPosition = getLayoutPosition();
-//                Intent intent = new Intent(mContext, BusinessDetailActivity.class);
-//                intent.putExtra("position", itemPosition + "");
-//                intent.putExtra("businesses", Parcels.wrap(mBusinesses));
-//                mContext.startActivity(intent);
-//            }
-//        });
     }
 
 

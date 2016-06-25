@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.mpbowen.bettercallsaul.R;
 
 
+
 public class BusinessDetailFragment extends Fragment {
 
 

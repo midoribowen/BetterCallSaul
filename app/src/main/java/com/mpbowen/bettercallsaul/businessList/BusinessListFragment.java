@@ -46,6 +46,7 @@ public class BusinessListFragment extends Fragment {
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
     private BusinessListAdapter mAdapter;
     public ArrayList<Business> mBusinesses = new ArrayList<>();
+    public Business mBusiness;
 
     public BusinessListFragment() {
         // Required empty public constructor
