@@ -15,6 +15,8 @@ import com.bumptech.glide.Glide;
 import com.mpbowen.bettercallsaul.R;
 import com.mpbowen.bettercallsaul.models.Business;
 
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -23,6 +25,7 @@ public class BusinessDetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_NAME = "business_name";
     public static final String EXTRA_IMAGE_URL = "business_image_url";
+    Business mBusiness = new Business();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,8 @@ public class BusinessDetailActivity extends AppCompatActivity {
         final String businessName = intent.getStringExtra(EXTRA_NAME);
         final String businessImageUrl = intent.getStringExtra(EXTRA_IMAGE_URL);
 
+        mBusiness = Parcels.unwrap(getIntent().getParcelableExtra("business"));
+
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -42,7 +47,7 @@ public class BusinessDetailActivity extends AppCompatActivity {
 
         loadBackdrop(businessImageUrl);
 
-        initFragment(BusinessDetailFragment.newInstance());
+        initFragment(BusinessDetailFragment.newInstance(mBusiness));
     }
 
     private void loadBackdrop(String businessImageUrl) {

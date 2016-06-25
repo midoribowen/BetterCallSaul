@@ -34,6 +34,7 @@ public class BusinessViewHolder extends RecyclerView.ViewHolder {
     public final View mView;
     public String mBusinessNameString;
     public String mBusinessImageUrlString;
+    public Business mBusiness;
     private Context mContext;
     private List<Business> mBusinesses = new ArrayList<>();
 
