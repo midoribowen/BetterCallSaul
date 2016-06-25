@@ -64,7 +64,9 @@ public class BusinessDetailFragment extends Fragment implements View.OnClickList
 
         ButterKnife.bind(this, view);
 
-        mBusinessRatingTextView.setText(Double.toString(mBusiness.getRating()) + "/5.0");
+        mBusinessRatingBar.setIsIndicator(true);
+        mBusinessRatingBar.setRating(mBusiness.getRating().floatValue());
+        mBusinessRatingTextView.setText(Double.toString(mBusiness.getRating()) + "/5");
         mBusinessCategoryTextView.setText(mBusiness.getCategoriesAsString());
 
         mBusinessWebsiteTextView.setOnClickListener(this);
