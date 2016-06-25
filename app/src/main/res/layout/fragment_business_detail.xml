@@ -1,13 +1,176 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.mpbowen.bettercallsaul.businessDetail.BusinessDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:id="@+id/RatingCatCardView"
+        android:layout_gravity="center"
+        android:layout_margin="4dp"
+        card_view:cardCornerRadius="1dp"
+        card_view:cardElevation="8dp">
 
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorCard"
+            android:paddingTop="20dp"
+            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
+            android:paddingRight="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="20dp">
+
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/businessRatingBar"
+                android:numStars="5"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:progressTint="@color/colorAccent"
+                android:secondaryProgressTint="@color/colorAccent"
+                android:progressBackgroundTint="@color/colorAccent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/businessRatingTextView"
+                android:layout_below="@+id/businessRatingBar"
+                android:text="4.5/5.0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/businessCategoryTextView"
+                android:layout_below="@+id/businessRatingTextView"
+                android:text="Family and Divorce Law"
+                android:textColor="@color/colorSecondaryText" />
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/infoCardView"
+        android:layout_gravity="center"
+        android:layout_margin="4dp"
+        card_view:cardCornerRadius="1dp"
+        card_view:cardElevation="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:paddingTop="20dp"
+            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
+            android:paddingRight="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/businessWebsiteTextView"
+                android:drawableLeft="@drawable/ic_exit_to_app_white_18dp"
+                android:drawableStart="@drawable/ic_exit_to_app_white_18dp"
+                android:drawablePadding="4dp"
+                android:text="View on Yelp"
+                android:textColor="@color/colorCard"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/businessPhoneTextView"
+                android:layout_below="@+id/businessWebsiteTextView"
+                android:layout_marginTop="5dp"
+                android:drawableLeft="@drawable/ic_local_phone_white_18dp"
+                android:drawableStart="@drawable/ic_local_phone_white_18dp"
+                android:drawablePadding="4dp"
+                android:text="(503)LWYRUP"
+                android:textColor="@color/colorCard"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/businessAddressTextView"
+                android:layout_below="@+id/businessPhoneTextView"
+                android:layout_marginTop="5dp"
+                android:drawableLeft="@drawable/ic_map_white_18dp"
+                android:drawableStart="@drawable/ic_map_white_18dp"
+                android:drawablePadding="4dp"
+                android:text="9800 Montgomery Blvd NE, Albuquerque, NM 87111"
+                android:textColor="@color/colorCard"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:gravity="start"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/snippetCardView"
+        android:layout_gravity="center"
+        android:layout_margin="4dp"
+        card_view:cardCornerRadius="1dp"
+        card_view:cardElevation="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorCard"
+            android:paddingTop="20dp"
+            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
+            android:paddingRight="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="20dp">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/businessSnippetImageView"
+                android:src="@drawable/saul_goodman"
+                android:scaleType="centerCrop"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/businessSnippetTextView"
+                android:text="I've practiced law in Portland for a quarter of a century.  No one has a better reputation, both as a business lawyer and as a caring person, than Greg..."
+                android:textColor="@color/colorPrimaryText"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/businessSnippetImageView"
+                android:layout_toEndOf="@+id/businessSnippetImageView"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

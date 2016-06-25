@@ -35,8 +35,10 @@ public class BusinessListAdapter extends RecyclerView.Adapter<BusinessViewHolder
     }
 
     @Override
-    public void onBindViewHolder(final BusinessViewHolder holder, int position) {
+    public void onBindViewHolder(final BusinessViewHolder holder, final int position) {
         holder.bindBusiness(mBusinesses.get(position));
+
+        holder.mBusiness = mBusinesses.get(position);
 
         holder.mBusinessNameString = mBusinesses.get(position).getName();
         if (mBusinesses.get(position).getImageUrl() !=null ) {
@@ -49,6 +51,7 @@ public class BusinessListAdapter extends RecyclerView.Adapter<BusinessViewHolder
                 Intent intent = new Intent(mContext, BusinessDetailActivity.class);
                 intent.putExtra(BusinessDetailActivity.EXTRA_NAME, holder.mBusinessNameString);
                 intent.putExtra(BusinessDetailActivity.EXTRA_IMAGE_URL, holder.mBusinessImageUrlString);
+                intent.putExtra("business", Parcels.wrap(holder.mBusiness));
                 mContext.startActivity(intent);
             }
         });
