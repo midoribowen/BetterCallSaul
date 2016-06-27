@@ -8,7 +8,7 @@
     <color name="colorSecondaryText">#727272</color>
     <color name="colorIcons">#212121</color>
     <color name="colorDivider">#B6B6B6</color>
-    <color name="colorCard">#FFFFFF</color>
+    <color name="colorWhite">#FFFFFF</color>
     <color name="window_background">#FFF5F5F5</color>
 
     <color name="translucent_scrim_top">#33000000</color>

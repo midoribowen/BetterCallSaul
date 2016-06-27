@@ -19,7 +19,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorCard"
+            android:background="@color/colorWhite"
             android:paddingTop="20dp"
             android:paddingLeft="10dp"
             android:paddingStart="10dp"
@@ -89,7 +89,7 @@
                 android:drawableStart="@drawable/ic_exit_to_app_white_18dp"
                 android:drawablePadding="4dp"
                 android:text="View on Yelp"
-                android:textColor="@color/colorCard"
+                android:textColor="@color/colorWhite"
                 android:textStyle="bold"
                 android:gravity="center"/>
 
@@ -103,7 +103,7 @@
                 android:drawableStart="@drawable/ic_local_phone_white_18dp"
                 android:drawablePadding="4dp"
                 android:text="(503)LWYRUP"
-                android:textColor="@color/colorCard"
+                android:textColor="@color/colorWhite"
                 android:textStyle="bold"
                 android:gravity="center"/>
 
@@ -117,7 +117,7 @@
                 android:drawableStart="@drawable/ic_map_white_18dp"
                 android:drawablePadding="4dp"
                 android:text="9800 Montgomery Blvd NE, Albuquerque, NM 87111"
-                android:textColor="@color/colorCard"
+                android:textColor="@color/colorWhite"
                 android:textStyle="bold"
                 android:textAlignment="textStart"
                 android:gravity="start"/>
@@ -144,7 +144,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorCard"
+            android:background="@color/colorWhite"
             android:paddingTop="20dp"
             android:paddingLeft="10dp"
             android:paddingStart="10dp"
