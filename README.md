@@ -8,6 +8,8 @@
 
 Better Call Saul is an Android app where users can look up legal services through Yelp and view them in a detail-view. This is an app to learn new Android skills. Current features I've implemented include: Retrofit and a CollapsingToolbar.
 
+To-Do: Add landscape views
+
 Future features for continued learning:
 * MVP architecture
 * Shared-element Activity transition
