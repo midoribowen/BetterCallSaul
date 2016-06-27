@@ -29,7 +29,7 @@ You will need the following programs installed on your computer.
 * Get your api keys and tokens from the Yelp developer website: https://www.yelp.com/developers/documentation/v2/overview
 * Create a gradle.properties file.
   * Add the following to the gradle.properties file:
-``` java
+  ``` java
 YelpConsumerKey = "<your consumer key here>"
 YelpConsumerSecret = "<your consumer secret here>"
 YelpToken = "<your yelp token here>"
