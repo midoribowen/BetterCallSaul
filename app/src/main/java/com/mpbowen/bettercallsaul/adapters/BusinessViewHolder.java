@@ -17,6 +17,7 @@ import com.mpbowen.bettercallsaul.models.Business;
 
 import org.parceler.Parcels;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class BusinessViewHolder extends RecyclerView.ViewHolder {
     public String mBusinessNameString;
     public String mBusinessImageUrlString;
     public Business mBusiness;
-    private Context mContext;
+    private WeakReference <Context> mContext;
     private List<Business> mBusinesses = new ArrayList<>();
 
 
@@ -43,7 +44,7 @@ public class BusinessViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         ButterKnife.bind(this, itemView);
         mView = itemView;
-        mContext = itemView.getContext();
+        mContext = new WeakReference<Context>(itemView.getContext());
         mBusinesses = businesses;
 
     }
@@ -52,13 +53,13 @@ public class BusinessViewHolder extends RecyclerView.ViewHolder {
     public void bindBusiness(Business business) {
         // Bind with Glide
         if (business.getImageUrl() != null) {
-            Glide.with(mContext)
+            Glide.with(mContext.get())
                     .load(business.getLargeImageUrl())
                     .override(Constants.MAX_WIDTH, Constants.MAX_HEIGHT)
                     .centerCrop()
                     .into(mBusinessImageView);
         } else {
-            Glide.with(mContext)
+            Glide.with(mContext.get())
                     .load(R.drawable.saul_goodman)
                     .centerCrop()
                     .into(mBusinessImageView);

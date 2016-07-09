@@ -14,16 +14,17 @@ import com.mpbowen.bettercallsaul.models.Business;
 
 import org.parceler.Parcels;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BusinessListAdapter extends RecyclerView.Adapter<BusinessViewHolder> {
 
     private List<Business> mBusinesses = new ArrayList<>();
-    private Context mContext;
+    private WeakReference <Context> mContext;
 
     public BusinessListAdapter(Context context, List<Business> businesses) {
-        mContext = context;
+        mContext = new WeakReference<Context>(context);
         mBusinesses = businesses;
     }
 
@@ -48,11 +49,11 @@ public class BusinessListAdapter extends RecyclerView.Adapter<BusinessViewHolder
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, BusinessDetailActivity.class);
+                Intent intent = new Intent(mContext.get(), BusinessDetailActivity.class);
                 intent.putExtra(BusinessDetailActivity.EXTRA_NAME, holder.mBusinessNameString);
                 intent.putExtra(BusinessDetailActivity.EXTRA_IMAGE_URL, holder.mBusinessImageUrlString);
                 intent.putExtra("business", Parcels.wrap(holder.mBusiness));
-                mContext.startActivity(intent);
+                mContext.get().startActivity(intent);
             }
         });
     }
