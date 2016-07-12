@@ -1,6 +1,7 @@
 package com.mpbowen.bettercallsaul.businessList;
 
 
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -35,18 +36,17 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class BusinessListFragment extends Fragment {
+public class BusinessListFragment extends Fragment implements BusinessListInterface.View {
 
     public static final String TAG = BusinessListFragment.class.getSimpleName();
 
-    private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
-    private String mRecentAddress;
+
+    private BusinessListPresenter mBusinessListPresenter;
+    private ProgressDialog mSearchProgressDialog;
 
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
-    private BusinessListAdapter mAdapter;
     public ArrayList<Business> mBusinesses = new ArrayList<>();
-    public Business mBusiness;
 
     public BusinessListFragment() {
         // Required empty public constructor
@@ -69,11 +69,20 @@ public class BusinessListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_business_list, container, false);
         ButterKnife.bind(this, view);
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+        mSearchProgressDialog = new ProgressDialog(getContext());
+        mSearchProgressDialog.setTitle("Loading...");
+        mSearchProgressDialog.setMessage("Searching for businesses...");
+        mSearchProgressDialog.setCancelable(false);
+        mSearchProgressDialog.show();
+
+        mBusinessListPresenter = new BusinessListPresenter(this);
+
+        final SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        final String mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
         mEditor = mSharedPreferences.edit();
+        mEditor.apply();
         if (mRecentAddress != null) {
-            getBusinesses(mRecentAddress);
+            mBusinessListPresenter.getBusinesses(mRecentAddress);
         }
 
         return view;
@@ -90,7 +99,7 @@ public class BusinessListFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 addToSharedPreferences(query);
-                getBusinesses(query);
+                mBusinessListPresenter.getBusinesses(query);
                 return false;
             }
 
@@ -110,36 +119,15 @@ public class BusinessListFragment extends Fragment {
         mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, location).apply();
     }
 
-    private void getBusinesses(String location) {
-        String term = "legal services";
-        String limit = "15";
-        YelpAPIFactory apiFactory = new YelpAPIFactory(Constants.YELP_CONSUMER_KEY, Constants.YELP_CONSUMER_SECRET, Constants.YELP_TOKEN, Constants.YELP_TOKEN_SECRET);
-        YelpAPI yelpAPI = apiFactory.createAPI();
-        Call<SearchResponse> call = yelpAPI.search(term, location, limit);
-        Callback<SearchResponse> callback = new Callback<SearchResponse>() {
-            @Override
-            public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
-                SearchResponse searchResponse = response.body();
-                try {
-                    mBusinesses = new ArrayList(searchResponse.getBusinesses());
-                } catch (NullPointerException exception) {
-                    exception.printStackTrace();
-                }
-
-                mAdapter = new BusinessListAdapter(getContext(), mBusinesses);
-                mRecyclerView.setAdapter(mAdapter);
-                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-                mRecyclerView.setLayoutManager(layoutManager);
-                mRecyclerView.setHasFixedSize(true);
-
-            }
-
-            @Override
-            public void onFailure(Call<SearchResponse> call, Throwable t) {
-                Log.d(TAG, t.toString());
-            }
-        };
-        call.enqueue(callback);
+    @Override
+    public void displayBusinesses(final ArrayList<Business> businesses) {
+        mBusinesses = businesses;
+        final BusinessListAdapter mAdapter = new BusinessListAdapter(getContext(), mBusinesses);
+        mRecyclerView.setAdapter(mAdapter);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setHasFixedSize(true);
+        mSearchProgressDialog.dismiss();
     }
 
 }
