@@ -2,38 +2,34 @@ package com.mpbowen.bettercallsaul.businessList;
 
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.mpbowen.bettercallsaul.Constants;
 import com.mpbowen.bettercallsaul.R;
 import com.mpbowen.bettercallsaul.adapters.BusinessListAdapter;
+import com.mpbowen.bettercallsaul.exception.exceptions.YelpAPIError;
 import com.mpbowen.bettercallsaul.models.Business;
-import com.mpbowen.bettercallsaul.models.SearchResponse;
-import com.mpbowen.bettercallsaul.services.YelpAPI;
-import com.mpbowen.bettercallsaul.services.YelpAPIFactory;
 
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class BusinessListFragment extends Fragment implements BusinessListInterface.View {
@@ -110,7 +106,7 @@ public class BusinessListFragment extends Fragment implements BusinessListInterf
         });
     }
 
-        @Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
@@ -128,6 +124,35 @@ public class BusinessListFragment extends Fragment implements BusinessListInterf
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
         mSearchProgressDialog.dismiss();
+    }
+
+    @Override
+    public void displayError(YelpAPIError error) {
+        mSearchProgressDialog.dismiss();
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        alertDialogBuilder.setTitle(error.getCode() + " Error");
+        alertDialogBuilder.setMessage(error.getText());
+        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast apologyToast = Toast.makeText(getActivity(), "Sorry about that!", Toast.LENGTH_LONG);
+                apologyToast.show();
+            }
+        });
+        alertDialogBuilder.setNegativeButton("Report Error", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                //TODO: Send error data to Firebase
+
+                Toast gratitudeToast = Toast.makeText(getActivity(), "Thank you!", Toast.LENGTH_LONG);
+                gratitudeToast.show();
+            }
+        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
 }

@@ -2,6 +2,7 @@ package com.mpbowen.bettercallsaul.services;
 
 
 import com.mpbowen.bettercallsaul.Constants;
+import com.mpbowen.bettercallsaul.exception.ErrorHandlingInterceptor;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -20,6 +21,7 @@ public class YelpAPIFactory {
 
         this.httpClient = new OkHttpClient.Builder()
                 .addInterceptor(new SigningInterceptor(consumer))
+                .addInterceptor(new ErrorHandlingInterceptor())
                 .build();
     }
 
@@ -32,6 +34,8 @@ public class YelpAPIFactory {
 
         return retrofit.create(YelpAPI.class);
     }
+
+
 
     public String getAPIBaseUrl() {
         return YELP_API_BASE_URL;

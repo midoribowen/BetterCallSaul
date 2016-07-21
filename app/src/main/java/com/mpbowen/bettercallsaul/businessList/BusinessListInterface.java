@@ -1,5 +1,6 @@
 package com.mpbowen.bettercallsaul.businessList;
 
+import com.mpbowen.bettercallsaul.exception.exceptions.YelpAPIError;
 import com.mpbowen.bettercallsaul.models.Business;
 
 import java.util.ArrayList;
@@ -7,12 +8,11 @@ import java.util.ArrayList;
 public interface BusinessListInterface {
 
     interface View {
-        // display businesses?
         void displayBusinesses(ArrayList<Business> businesses);
+        void displayError(YelpAPIError error);
     }
 
     interface Presenter {
-        // search businesses?
         void getBusinesses(String query);
     }
 

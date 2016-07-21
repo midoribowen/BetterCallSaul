@@ -77,6 +77,7 @@ dependencies {
     compile "se.akerfeldt:okhttp-signpost:$rootProject.okHttpSignpostVersion"
     compile "oauth.signpost:signpost-core:$rootProject.signpostVersion"
     compile "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+    compile "com.squareup.retrofit2:converter-jackson:$rootProject.retrofitVersion"
     compile "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     compile "org.parceler:parceler-api:$rootProject.parcelerVersion"
     compile "com.android.support.test.espresso:espresso-idling-resource:$rootProject.ext.espressoVersion"
