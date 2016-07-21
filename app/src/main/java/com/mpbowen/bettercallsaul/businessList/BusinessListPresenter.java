@@ -39,7 +39,7 @@ public class BusinessListPresenter implements BusinessListInterface.Presenter {
             @Override
             public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
 
-                if (response.isSuccessful()) {
+                if (response.isSuccessful() && response.body() != null) {
                     SearchResponse searchResponse = response.body();
                     mBusinesses = new ArrayList<>(searchResponse.getBusinesses());
                     mBusinessListView.displayBusinesses(mBusinesses);
