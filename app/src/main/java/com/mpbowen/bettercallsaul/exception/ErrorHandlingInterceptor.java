@@ -1,8 +1,17 @@
 package com.mpbowen.bettercallsaul.exception;
 
+import android.util.Log;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonSyntaxException;
+import com.mpbowen.bettercallsaul.Constants;
 import com.mpbowen.bettercallsaul.exception.exceptions.BusinessUnavailable;
+import com.mpbowen.bettercallsaul.exception.exceptions.Error;
 import com.mpbowen.bettercallsaul.exception.exceptions.ExceededReqs;
 import com.mpbowen.bettercallsaul.exception.exceptions.InternalError;
 import com.mpbowen.bettercallsaul.exception.exceptions.InvalidOAuthCredentials;
@@ -14,15 +23,23 @@ import com.mpbowen.bettercallsaul.exception.exceptions.MultipleLocations;
 import com.mpbowen.bettercallsaul.exception.exceptions.UnavailableForLocation;
 import com.mpbowen.bettercallsaul.exception.exceptions.UnexpectedAPIError;
 import com.mpbowen.bettercallsaul.exception.exceptions.YelpAPIError;
+import com.mpbowen.bettercallsaul.models.SearchResponse;
+import com.mpbowen.bettercallsaul.services.YelpAPI;
+import com.mpbowen.bettercallsaul.services.YelpAPIFactory;
+
+import org.json.JSONException;
 
 import java.io.IOException;
 
 import okhttp3.Interceptor;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
+import retrofit2.Converter;
 
 public class ErrorHandlingInterceptor implements Interceptor {
 
-    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static final Gson gson = new Gson();
+//    private static final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public Response intercept(Chain chain) throws IOException {
@@ -45,42 +62,33 @@ public class ErrorHandlingInterceptor implements Interceptor {
             return new UnexpectedAPIError(code);
         }
 
+        YelpAPIError yelpAPIError = gson.fromJson(responseBody, YelpAPIError.class);
+        Error error = yelpAPIError.getError();
+        String errorId = error.getId();
 
-        //TODO: Use Gson instead. Need to change POJOs as well
-
-
-        //Jackson
-        JsonNode errorJsonNode = objectMapper.readTree(responseBody).path("error");
-        String id = errorJsonNode.path("id").asText();
-        String errorText = errorJsonNode.path("text").asText();
-
-        if (errorJsonNode.has("field")) {
-            errorText += ": " + errorJsonNode.path("field").asText();
-        }
-
-        switch (id) {
+        switch (errorId) {
             case "INTERNAL_ERROR":
-                return new InternalError(code, errorText, id);
+                return new InternalError(code, error);
             case "EXCEEDED_REQS":
-                return new ExceededReqs(code, errorText, id);
+                return new ExceededReqs(code, error);
             case "MISSING_PARAMETER":
-                return new MissingParameter(code, errorText, id);
+                return new MissingParameter(code, error);
             case "INVALID_PARAMETER":
-                return new InvalidParameter(code, errorText, id);
+                return new InvalidParameter(code, error);
             case "INVALID_SIGNATURE":
-                return new InvalidSignature(code, errorText, id);
+                return new InvalidSignature(code, error);
             case "INVALID_OAUTH_CREDENTIALS":
-                return new InvalidOAuthCredentials(code, errorText, id);
+                return new InvalidOAuthCredentials(code, error);
             case "INVALID_OAUTH_USER":
-                return new InvalidOAuthUser(code, errorText, id);
+                return new InvalidOAuthUser(code, error);
             case "UNAVAILABLE_FOR_LOCATION":
-                return new UnavailableForLocation(code, errorText, id);
+                return new UnavailableForLocation(code, error);
             case "MULTIPLE_LOCATIONS":
-                return new MultipleLocations(code, errorText, id);
+                return new MultipleLocations(code, error);
             case "BUSINESS_UNAVAILABLE":
-                return new BusinessUnavailable(code, errorText, id);
+                return new BusinessUnavailable(code, error);
             default:
-                return new UnexpectedAPIError(code, errorText, id);
+                return new UnexpectedAPIError(code, error);
         }
     }
 }

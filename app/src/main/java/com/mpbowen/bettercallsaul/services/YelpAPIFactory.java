@@ -3,8 +3,13 @@ package com.mpbowen.bettercallsaul.services;
 
 import com.mpbowen.bettercallsaul.Constants;
 import com.mpbowen.bettercallsaul.exception.ErrorHandlingInterceptor;
+import com.mpbowen.bettercallsaul.models.SearchResponse;
+
+import java.lang.annotation.Annotation;
 
 import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
+import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import se.akerfeldt.okhttp.signpost.OkHttpOAuthConsumer;
@@ -34,8 +39,6 @@ public class YelpAPIFactory {
 
         return retrofit.create(YelpAPI.class);
     }
-
-
 
     public String getAPIBaseUrl() {
         return YELP_API_BASE_URL;

@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.mpbowen.bettercallsaul.Constants;
 import com.mpbowen.bettercallsaul.R;
 import com.mpbowen.bettercallsaul.adapters.BusinessListAdapter;
+import com.mpbowen.bettercallsaul.exception.exceptions.Error;
 import com.mpbowen.bettercallsaul.exception.exceptions.YelpAPIError;
 import com.mpbowen.bettercallsaul.models.Business;
 
@@ -127,11 +128,11 @@ public class BusinessListFragment extends Fragment implements BusinessListInterf
     }
 
     @Override
-    public void displayError(YelpAPIError error) {
+    public void displayError(YelpAPIError yelpAPIError, Error error) {
         mSearchProgressDialog.dismiss();
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
-        alertDialogBuilder.setTitle(error.getCode() + " Error");
+        alertDialogBuilder.setTitle(Integer.toString(yelpAPIError.getCode()) + " Error");
         alertDialogBuilder.setMessage(error.getText());
         alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override

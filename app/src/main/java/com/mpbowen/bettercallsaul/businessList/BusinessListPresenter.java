@@ -4,6 +4,7 @@ package com.mpbowen.bettercallsaul.businessList;
 import android.util.Log;
 
 import com.mpbowen.bettercallsaul.Constants;
+import com.mpbowen.bettercallsaul.exception.exceptions.Error;
 import com.mpbowen.bettercallsaul.exception.exceptions.YelpAPIError;
 import com.mpbowen.bettercallsaul.models.Business;
 import com.mpbowen.bettercallsaul.models.SearchResponse;
@@ -50,12 +51,9 @@ public class BusinessListPresenter implements BusinessListInterface.Presenter {
             @Override
             public void onFailure(Call<SearchResponse> call, Throwable throwable) {
                 if (throwable instanceof YelpAPIError) {
-                    YelpAPIError error = (YelpAPIError) throwable;
-                    Log.d("API ERROR CODE: ", Integer.toString(error.getCode()));
-                    Log.d("API ERROR TEXT: ", error.getText());
-                    Log.d("API ERROR ID: ", error.getId());
-
-                    mBusinessListView.displayError(error);
+                    YelpAPIError yelpAPIError = (YelpAPIError) throwable;
+                    Error error = yelpAPIError.getError();
+                    mBusinessListView.displayError(yelpAPIError, error);
                 } else if (throwable instanceof IOException) {
                     IOException ioe = (IOException) throwable;
                     Log.d("NETWORK ERROR!", ioe.toString() + " Uh oh! Check your network connection!");
