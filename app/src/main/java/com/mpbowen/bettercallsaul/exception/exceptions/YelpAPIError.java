@@ -11,9 +11,6 @@ public abstract class YelpAPIError extends IOException {
     @SerializedName("error")
     private Error error;
 
-//    public YelpAPIError() {
-//    }
-
     public YelpAPIError(int code, Error error) {
         this.code = code;
         this.error = error;
@@ -26,33 +23,5 @@ public abstract class YelpAPIError extends IOException {
     public Error getError() {
         return error;
     }
-
-//    private int code;
-//    private String message;
-//    private String text;
-//    private String errorId;
-//
-//    public YelpAPIError(int code, String message, String text, String errorId) {
-//        this.code = code;
-//        this.message = message;
-//        this.text = text;
-//        this.errorId = errorId;
-//    }
-//
-//    public int getCode() {
-//        return code;
-//    }
-//
-//    public String getMessage() {
-//        return message;
-//    }
-//
-//    public String getText() {
-//        return text;
-//    }
-//
-//    public String getErrorId() {
-//        return errorId;
-//    }
 
 }

@@ -2,8 +2,6 @@ package com.mpbowen.bettercallsaul.exception.exceptions;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.io.IOException;
-
 public class Error {
 
     @SerializedName("text")
@@ -15,8 +13,6 @@ public class Error {
     @SerializedName("field")
     private String field;
 
-//    public Error() {
-//    }
 
     public Error(String text, String id, String field) {
         this.text = text;

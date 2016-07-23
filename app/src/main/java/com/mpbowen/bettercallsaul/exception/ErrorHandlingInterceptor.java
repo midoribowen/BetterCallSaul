@@ -1,15 +1,6 @@
 package com.mpbowen.bettercallsaul.exception;
 
-import android.util.Log;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonSyntaxException;
-import com.mpbowen.bettercallsaul.Constants;
 import com.mpbowen.bettercallsaul.exception.exceptions.BusinessUnavailable;
 import com.mpbowen.bettercallsaul.exception.exceptions.Error;
 import com.mpbowen.bettercallsaul.exception.exceptions.ExceededReqs;
@@ -23,23 +14,15 @@ import com.mpbowen.bettercallsaul.exception.exceptions.MultipleLocations;
 import com.mpbowen.bettercallsaul.exception.exceptions.UnavailableForLocation;
 import com.mpbowen.bettercallsaul.exception.exceptions.UnexpectedAPIError;
 import com.mpbowen.bettercallsaul.exception.exceptions.YelpAPIError;
-import com.mpbowen.bettercallsaul.models.SearchResponse;
-import com.mpbowen.bettercallsaul.services.YelpAPI;
-import com.mpbowen.bettercallsaul.services.YelpAPIFactory;
-
-import org.json.JSONException;
 
 import java.io.IOException;
 
 import okhttp3.Interceptor;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
-import retrofit2.Converter;
 
 public class ErrorHandlingInterceptor implements Interceptor {
 
     private static final Gson gson = new Gson();
-//    private static final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public Response intercept(Chain chain) throws IOException {
