@@ -128,7 +128,7 @@ public class BusinessListFragment extends Fragment implements BusinessListInterf
     }
 
     @Override
-    public void displayError(YelpAPIError yelpAPIError, Error error) {
+    public void displayAPIError(YelpAPIError yelpAPIError, Error error) {
         mSearchProgressDialog.dismiss();
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
@@ -152,6 +152,24 @@ public class BusinessListFragment extends Fragment implements BusinessListInterf
             }
         });
 
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    @Override
+    public void displayNetworkError(String message) {
+        mSearchProgressDialog.dismiss();
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        alertDialogBuilder.setTitle("Network Error!");
+        alertDialogBuilder.setMessage(message);
+        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+           @Override
+            public void onClick(DialogInterface dialog, int which) {
+               Toast networkCheckToast = Toast.makeText(getActivity(), "Check your network connection", Toast.LENGTH_LONG);
+               networkCheckToast.show();
+           }
+        });
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }

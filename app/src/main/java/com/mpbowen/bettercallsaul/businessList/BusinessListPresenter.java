@@ -53,11 +53,11 @@ public class BusinessListPresenter implements BusinessListInterface.Presenter {
                 if (throwable instanceof YelpAPIError) {
                     YelpAPIError yelpAPIError = (YelpAPIError) throwable;
                     Error error = yelpAPIError.getError();
-                    mBusinessListView.displayError(yelpAPIError, error);
+                    mBusinessListView.displayAPIError(yelpAPIError, error);
                 } else if (throwable instanceof IOException) {
                     IOException ioe = (IOException) throwable;
-                    Log.d("NETWORK ERROR!", ioe.toString() + " Uh oh! Check your network connection!");
-                    // TODO: Toast for network error
+                    String message = ioe.getMessage();
+                    mBusinessListView.displayNetworkError(message);
                 }
             }
         };
